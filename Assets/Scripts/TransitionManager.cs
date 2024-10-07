@@ -29,6 +29,9 @@ public class TransitionManager : MonoBehaviour
 
     private delegate Task TransitionDelegate(float time, Ease ease, bool reset, bool ignoreTimeScale);
 
+    public static event Action OnTransitionStart;
+    public static event Action OnTransitionEnd;
+
     [SerializeField] private Image image;
 
     private void Awake()
@@ -53,7 +56,9 @@ public class TransitionManager : MonoBehaviour
     /// <returns></returns>
     public async Task Transition(TransitionType type, float time, Ease ease, bool reset, bool ignoreTimeScale = false)
     {
+        OnTransitionStart?.Invoke();
         await GetTransition(type)(time, ease, reset, ignoreTimeScale);
+        OnTransitionEnd?.Invoke();
     }
 
     /// <summary>
@@ -68,7 +73,9 @@ public class TransitionManager : MonoBehaviour
     public async Task Transition(TransitionType type, float time, Ease ease, bool reset, Color color, bool ignoreTimeScale = false)
     {
         image.color = color;
+        OnTransitionStart?.Invoke();
         await GetTransition(type)(time, ease, reset, ignoreTimeScale);
+        OnTransitionEnd?.Invoke();
     }
 
     private TransitionDelegate GetTransition(TransitionType type)
