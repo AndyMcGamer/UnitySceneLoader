@@ -1,4 +1,4 @@
-SceneLoader.LoadScene
+[SceneLoader](README.md).LoadScene
 ---
 ### Declaration
 public void **LoadScene**(string **sceneName**, [LoadSceneMode](https://docs.unity3d.com/ScriptReference/SceneManagement.LoadSceneMode.html) **sceneMode** = LoadSceneMode.Single)
