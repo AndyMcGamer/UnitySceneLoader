@@ -27,7 +27,7 @@ public class TransitionManager : MonoBehaviour
 {
     public static TransitionManager instance;
 
-    private delegate Task TransitionDelegate(float time, Ease ease, bool reset);
+    private delegate Task TransitionDelegate(float time, Ease ease, bool reset, bool ignoreTimeScale);
 
     [SerializeField] private Image image;
 
@@ -51,9 +51,9 @@ public class TransitionManager : MonoBehaviour
     /// <param name="ease">The ease function to use.</param>
     /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
     /// <returns></returns>
-    public async Task Transition(TransitionType type, float time, Ease ease, bool reset)
+    public async Task Transition(TransitionType type, float time, Ease ease, bool reset, bool ignoreTimeScale = false)
     {
-        await GetTransition(type)(time, ease, reset);
+        await GetTransition(type)(time, ease, reset, ignoreTimeScale);
     }
 
     /// <summary>
@@ -65,10 +65,10 @@ public class TransitionManager : MonoBehaviour
     /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
     /// <param name="color">What color the transition image will be.</param>
     /// <returns></returns>
-    public async Task Transition(TransitionType type, float time, Ease ease, bool reset, Color color)
+    public async Task Transition(TransitionType type, float time, Ease ease, bool reset, Color color, bool ignoreTimeScale = false)
     {
         image.color = color;
-        await GetTransition(type)(time, ease, reset);
+        await GetTransition(type)(time, ease, reset, ignoreTimeScale);
     }
 
     private TransitionDelegate GetTransition(TransitionType type)
@@ -96,7 +96,7 @@ public class TransitionManager : MonoBehaviour
 
     #region Fade
 
-    private async Task FadeIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task FadeIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -104,10 +104,10 @@ public class TransitionManager : MonoBehaviour
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
         }
-        await Tween.Alpha(image, endValue: 1f, duration: time, ease: ease);
+        await Tween.Alpha(image, endValue: 1f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task FadeOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task FadeOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = false;
@@ -115,17 +115,17 @@ public class TransitionManager : MonoBehaviour
         {
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
         }
-        await Tween.Alpha(image, endValue: 0f, duration: time, ease: ease);
+        await Tween.Alpha(image, endValue: 0f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task FadeInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task FadeInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.raycastTarget = true;
         if (reset)
         {
-            await FadeIn(time / 2f, ease);
+            await FadeIn(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         }
-        await FadeOut(time / 2f, ease);
+        await FadeOut(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         image.raycastTarget = false;
     }
 
@@ -133,7 +133,7 @@ public class TransitionManager : MonoBehaviour
 
     #region HorizontalWipe
 
-    private async Task WipeLeftIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeLeftIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(image.rectTransform.anchoredPosition3D.x, 0, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -141,10 +141,10 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(-image.rectTransform.rect.width, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: 0f, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: 0f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeLeftOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeLeftOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(image.rectTransform.anchoredPosition3D.x, 0, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = false;
@@ -152,21 +152,21 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: image.rectTransform.rect.width, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: image.rectTransform.rect.width, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeLeftInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeLeftInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.raycastTarget = true;
         if (reset)
         {
-            await WipeLeftIn(time / 2f, ease);
+            await WipeLeftIn(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         }
-        await WipeLeftOut(time / 2f, ease);
+        await WipeLeftOut(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         image.raycastTarget = false;
     }
 
-    private async Task WipeRightIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeRightIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(image.rectTransform.anchoredPosition3D.x, 0, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -174,10 +174,10 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(image.rectTransform.rect.width, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: 0f, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: 0f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeRightOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeRightOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(image.rectTransform.anchoredPosition3D.x, 0, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = false;
@@ -185,17 +185,17 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: -image.rectTransform.rect.width, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionX(image.rectTransform, endValue: -image.rectTransform.rect.width, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeRightInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeRightInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.raycastTarget = true;
         if (reset)
         {
-            await WipeRightIn(time / 2f, ease);
+            await WipeRightIn(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         }
-        await WipeRightOut(time / 2f, ease);
+        await WipeRightOut(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         image.raycastTarget = false;
     }
 
@@ -203,7 +203,7 @@ public class TransitionManager : MonoBehaviour
 
     #region VerticalWipe
 
-    private async Task WipeUpIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeUpIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0, image.rectTransform.anchoredPosition3D.y, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -211,10 +211,10 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, -image.rectTransform.rect.height, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: 0f, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: 0f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeUpOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeUpOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0, image.rectTransform.anchoredPosition3D.y, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -222,21 +222,21 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: image.rectTransform.rect.height, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: image.rectTransform.rect.height, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeUpInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeUpInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.raycastTarget = true;
         if (reset)
         {
-            await WipeUpIn(time / 2f, ease);
+            await WipeUpIn(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         }
-        await WipeUpOut(time / 2f, ease);
+        await WipeUpOut(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         image.raycastTarget = false;
     }
 
-    private async Task WipeDownIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeDownIn(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0, image.rectTransform.anchoredPosition3D.y, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -244,10 +244,10 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, image.rectTransform.rect.height, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: 0f, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: 0f, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeDownOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeDownOut(float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.rectTransform.anchoredPosition3D = new(0, image.rectTransform.anchoredPosition3D.y, image.rectTransform.anchoredPosition3D.z);
         image.raycastTarget = true;
@@ -255,17 +255,17 @@ public class TransitionManager : MonoBehaviour
         {
             image.rectTransform.anchoredPosition3D = new(0f, 0f, image.rectTransform.anchoredPosition3D.z);
         }
-        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: -image.rectTransform.rect.height, duration: time, ease: ease);
+        await Tween.UIAnchoredPositionY(image.rectTransform, endValue: -image.rectTransform.rect.height, duration: time, ease: ease, useUnscaledTime: ignoreTimeScale);
     }
 
-    private async Task WipeDownInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true)
+    private async Task WipeDownInOut(float time = 1f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
         image.raycastTarget = true;
         if (reset)
         {
-            await WipeDownIn(time / 2f, ease);
+            await WipeDownIn(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         }
-        await WipeDownOut(time / 2f, ease);
+        await WipeDownOut(time / 2f, ease, ignoreTimeScale: ignoreTimeScale);
         image.raycastTarget = false;
     }
 
