@@ -1,7 +1,7 @@
 [TransitionManager](README.md).Transition
 ---
 ### Declaration
-public async Task Transition([TransitionType](TransitionType.md) **type** = TransitionType.FadeInOut, float **time** = 0.5f, [Ease]() **ease** = Ease.Linear, bool **reset** = true, bool **ignoreTimeScale** = false);
+public async Task Transition([TransitionType](TransitionType.md) **type** = TransitionType.FadeInOut, float **time** = 0.5f, [Ease](https://easings.net/) **ease** = Ease.Linear, bool **reset** = true, bool **ignoreTimeScale** = false);
 ### Declaration
 public async Task Transition([TransitionType](TransitionType.md) **type**, float **time**, [Ease]() **ease**, bool **reset**, [Color](https://docs.unity3d.com/ScriptReference/Color.html) **color**, bool **ignoreTimeScale** = false);
 
@@ -10,7 +10,7 @@ public async Task Transition([TransitionType](TransitionType.md) **type**, float
 | --- | --- |
 | **type** | The type of transition. See [TransitionType](TransitionType.md) for details. |
 | **time** | The total duration of the transition in seconds. |
-| **ease** | The ease function to use. See [Ease]() for details. |
+| **ease** | The ease function to use. This controls the behavior of the transition. See [Ease](https://easings.net/) for details. |
 | **reset** | Whether or not to force the transition to start from the very beginning. |
 | **ignoreTimeScale** | Determines whether or not the transition will execute with unscaled time. |
 | **color** | What color the transition image will be. |
