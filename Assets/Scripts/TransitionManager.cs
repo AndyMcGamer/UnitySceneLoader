@@ -46,10 +46,10 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Executes the specified transition.
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="time"></param>
-    /// <param name="ease"></param>
-    /// <param name="reset"></param>
+    /// <param name="type">The transition type.</param>
+    /// <param name="time">The duration of the transition.</param>
+    /// <param name="ease">The ease function to use.</param>
+    /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
     /// <returns></returns>
     public async Task Transition(TransitionType type, float time, Ease ease, bool reset)
     {
@@ -59,11 +59,11 @@ public class TransitionManager : MonoBehaviour
     /// <summary>
     /// Executes the specified transition.
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="time"></param>
-    /// <param name="ease"></param>
-    /// <param name="reset"></param>
-    /// <param name="color"></param>
+    /// <param name="type">The transition type.</param>
+    /// <param name="time">The duration of the transition.</param>
+    /// <param name="ease">The ease function to use.</param>
+    /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
+    /// <param name="color">What color the transition image will be.</param>
     /// <returns></returns>
     public async Task Transition(TransitionType type, float time, Ease ease, bool reset, Color color)
     {
