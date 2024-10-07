@@ -47,31 +47,35 @@ public class TransitionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Executes the specified transition.
+    /// Executes a transition with the specified settings.
     /// </summary>
     /// <param name="type">The transition type.</param>
-    /// <param name="time">The duration of the transition.</param>
+    /// <param name="time">The total duration of the transition in seconds.</param>
     /// <param name="ease">The ease function to use.</param>
     /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
+    /// <param name="ignoreTimeScale">Determines whether or not the transition will execute with unscaled time.</param>
     /// <returns></returns>
-    public async Task Transition(TransitionType type, float time, Ease ease, bool reset, bool ignoreTimeScale = false)
+    public async Task Transition(TransitionType type = TransitionType.FadeInOut, float time = 0.5f, Ease ease = Ease.Linear, bool reset = true, bool ignoreTimeScale = false)
     {
+        if (time < 0) throw new ArgumentOutOfRangeException("time", "Parameter time must be non-negative.");
         OnTransitionStart?.Invoke();
         await GetTransition(type)(time, ease, reset, ignoreTimeScale);
         OnTransitionEnd?.Invoke();
     }
 
     /// <summary>
-    /// Executes the specified transition.
+    /// Executes a transition with the specified settings.
     /// </summary>
     /// <param name="type">The transition type.</param>
-    /// <param name="time">The duration of the transition.</param>
+    /// <param name="time">The total duration of the transition in seconds.</param>
     /// <param name="ease">The ease function to use.</param>
     /// <param name="reset">Whether or not to force the transition to start from the very beginning.</param>
     /// <param name="color">What color the transition image will be.</param>
+    /// <param name="ignoreTimeScale">Determines whether or not the transition will execute with unscaled time.</param>
     /// <returns></returns>
     public async Task Transition(TransitionType type, float time, Ease ease, bool reset, Color color, bool ignoreTimeScale = false)
     {
+        if (time < 0) throw new ArgumentOutOfRangeException("time", "Parameter time must be non-negative.");
         image.color = color;
         OnTransitionStart?.Invoke();
         await GetTransition(type)(time, ease, reset, ignoreTimeScale);
