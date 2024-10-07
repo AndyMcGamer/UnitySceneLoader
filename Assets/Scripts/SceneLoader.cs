@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     public static event Action<float> OnLoadUpdate;
 
     private AsyncOperation _loadOperation = null;
-    public AsyncOperation LoadOperation { get => _loadOperation; private set => _loadOperation = value; }
+    // public AsyncOperation LoadOperation { get => _loadOperation; private set => _loadOperation = value; }
 
     public bool IsLoadingScene => _loadOperation != null || _loadProgress >= 0f;
 
