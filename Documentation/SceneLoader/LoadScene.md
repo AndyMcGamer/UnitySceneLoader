@@ -5,9 +5,9 @@ public void **LoadScene**(string **sceneName**, [LoadSceneMode](https://docs.uni
 ### Declaration
 public void **LoadScene**(int **index**, [LoadSceneMode](https://docs.unity3d.com/ScriptReference/SceneManagement.LoadSceneMode.html) **sceneMode** = LoadSceneMode.Single)
 ### Declaration
-public void **LoadScene**(string **sceneName**, [SceneLoadOptions] **loadOptions**)
+public void **LoadScene**(string **sceneName**, [SceneLoadOptions](SceneLoadOptions.md) **loadOptions**)
 ### Declaration
-public void **LoadScene**(int **index**, [SceneLoadOptions] **loadOptions**)
+public void **LoadScene**(int **index**, [SceneLoadOptions](SceneLoadOptions.md) **loadOptions**)
 
 ### Parameters
 
@@ -16,7 +16,7 @@ public void **LoadScene**(int **index**, [SceneLoadOptions] **loadOptions**)
 | **sceneName** | The name or path of the Scene to load. |
 | **index**     | The build index of the Scene to load. |
 | **sceneMode** | Whether or not to load the Scene additively. See [LoadSceneMode](https://docs.unity3d.com/ScriptReference/SceneManagement.LoadSceneMode.html) for details. |
-| **loadOptions** | Various parameters used to load the Scene. See [] for details. |
+| **loadOptions** | Various parameters used to load the Scene. See [SceneLoadOptions](SceneLoadOptions.md) for details. |
 
 ### Description
 Loads the Scene by its name or build index.
