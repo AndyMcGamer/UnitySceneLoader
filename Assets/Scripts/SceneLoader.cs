@@ -98,11 +98,12 @@ public class SceneLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// Manually activate the scene. Used when SceneLoadOptions.ManualActivation is true.
+    /// Manually activate the scene. This function does nothing if no Scene is currently being loaded.<br />
+    /// Used when SceneLoadOptions.ManualActivation is true.
     /// </summary>
     /// <param name="delay">Amount of time to wait before activation.</param>
     /// <param name="ignoreTimeScale">Whether to use scaled or unscaled time.</param>
-    public async void ActivateScene(float delay = 0f, bool ignoreTimeScale = false)
+    public async Task ActivateScene(float delay = 0f, bool ignoreTimeScale = false)
     {
         if (_loadOperation == null) return;
 
