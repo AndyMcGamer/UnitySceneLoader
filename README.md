@@ -14,16 +14,16 @@ This section will detail the key scripts and objects that are used and their pur
 Derives from `MonoBehaviour`. This class follows the singleton design pattern and handles scene loading. This class is intended to persist between scenes and can be used to switch scenes whenever needed.
 
 #### **Usage:**
-This script should be placed on a GameObject in the starting scene. It will be moved to `DontDestroyOnLoad` on Play. To change scenes, use the `SceneLoader.LoadScene` function.
+This script should be placed on a GameObject in the starting Scene. It will be moved to `DontDestroyOnLoad` on Play. To change scenes, use the [SceneLoader.LoadScene](Documentation/SceneLoader/LoadScene.md) function.
 
-### TransitionManager
+### [TransitionManager](Documentation/TransitionManager/README.md)
 Derives from `MonoBehaviour`. This class follows the singleton design pattern and handles screen transition effects. This class is intended to persist between scenes and can be used for effects such as full-screen fading and wipes.
 
 #### **Usage:**
-This script should be placed on a GameObject in the starting scene. It will be moved to `DontDestroyOnLoad` on Play. To execute a transition, use the `TransitionManager.Transition` function.
+This script should be placed on a GameObject in the starting Scene. It will be moved to `DontDestroyOnLoad` on Play. To execute a transition, use the [TransitionManager.Transition](Documentation/TransitionManager/Transition.md) function.
 
 
 ## PrimeTween
-`PrimeTween` is a free, non-allocating Tween library that is very easy to work with. The `TransitionManager` class depends on this package being installed as all the effects are done in code via tweening.
+[`PrimeTween`](https://assetstore.unity.com/packages/tools/animation/primetween-high-performance-animations-and-sequences-252960) is a free, non-allocating Tween library that is very easy to work with. The `TransitionManager` class depends on this package being installed as all the effects are done in code via tweening.
 
 Check out the [GitHub repository](https://github.com/KyryloKuzyk/PrimeTween) where there is detailed documentation on how to use the library.
