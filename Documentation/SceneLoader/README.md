@@ -2,7 +2,7 @@ SceneLoader
 ===
 
 ### Description
-Singleton class used for loading Scenes.
+Singleton class used for loading scenes at runtime.
 
 ### Properties
 |||
