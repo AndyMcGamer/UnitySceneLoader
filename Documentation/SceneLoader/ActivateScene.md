@@ -1,7 +1,7 @@
 [SceneLoader](README.md).ActivateScene
 ---
 ### Declaration
-public async void **ActivateScene**(float **delay** = 0f, bool **ignoreTimeScale** = false);
+public async [Task](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task?view=net-9.0) **ActivateScene**(float **delay** = 0f, bool **ignoreTimeScale** = false);
 
 ### Parameters
 |||
