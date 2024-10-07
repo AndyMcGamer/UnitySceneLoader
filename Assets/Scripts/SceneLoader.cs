@@ -82,7 +82,7 @@ public class SceneLoader : MonoBehaviour
 
         while (!_loadOperation.isDone)
         {
-            _loadProgress = _loadOperation.progress / 0.9f;
+            _loadProgress = Mathf.Clamp01(_loadOperation.progress / 0.9f);
             OnLoadUpdate?.Invoke(LoadProgress);
 
             if(_loadOperation.progress >= 0.9f)
