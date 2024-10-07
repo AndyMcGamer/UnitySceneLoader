@@ -1,5 +1,5 @@
-LoadProgress
-===
+[SceneLoader](README.md).LoadProgress
+---
 public float **LoadProgress** { get; private set; }
 ### Description
 The current progress of the scene loading. 
