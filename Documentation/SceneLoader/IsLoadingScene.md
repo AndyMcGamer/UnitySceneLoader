@@ -1,5 +1,5 @@
-IsLoadingScene
-===
+[SceneLoader](README.md).IsLoadingScene
+---
 public bool **IsLoadingScene** { get; }
 ### Description
 Whether or not there is currently a Scene being loaded.
