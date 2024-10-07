@@ -10,7 +10,7 @@ In order for the `TransitionManager` to work, the [`PrimeTween`](#primetween) as
 ## Core Scripts and Objects
 This section will detail the key scripts and objects that are used and their purpose.
 
-### [SceneLoader](Documentation/SceneLoader/README.md).
+### [SceneLoader](Documentation/SceneLoader/README.md)
 Derives from `MonoBehaviour`. This class follows the singleton design pattern and handles scene loading. This class is intended to persist between scenes and can be used to switch scenes whenever needed.
 
 #### **Usage:**
