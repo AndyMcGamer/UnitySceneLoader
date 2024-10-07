@@ -15,6 +15,7 @@ Singleton class used for loading scenes at runtime.
 |||
 | - | - |
 | [LoadScene](LoadScene.md) | Loads a Scene by the specified name or build index. |
+| [ActivateScene](ActivateScene.md) | Manually activate the scene. This function does nothing if no Scene is currently being loaded. |
 
 ### Events
 |||
