@@ -8,7 +8,7 @@ Singleton class used for loading Scenes.
 |||
 | - | - |
 | instance | The static singleton instance. |
-| LoadProgress | The current progress of the scene loading. |
+| [LoadProgress](LoadProgress.md) | The current progress of the scene loading. |
 | LoadOperation | A reference to the current scene loading's [AsyncOperation](https://docs.unity3d.com/ScriptReference/AsyncOperation.html). |
 | IsLoadingScene | Whether or not there is currently a Scene being loaded. |
 
