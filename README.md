@@ -24,6 +24,6 @@ This script should be placed on a GameObject in the starting Scene. It will be m
 
 
 ## PrimeTween
-[`PrimeTween`](https://assetstore.unity.com/packages/tools/animation/primetween-high-performance-animations-and-sequences-252960) is a free, non-allocating Tween library that is very easy to work with. The `TransitionManager` class depends on this package being installed as all the effects are done in code via tweening.
+[PrimeTween](https://assetstore.unity.com/packages/tools/animation/primetween-high-performance-animations-and-sequences-252960) is a free, non-allocating Tween library that is very easy to work with. The `TransitionManager` class depends on this package being installed as all the effects are done in code via tweening.
 
 Check out the [GitHub repository](https://github.com/KyryloKuzyk/PrimeTween) where there is detailed documentation on how to use the library.
