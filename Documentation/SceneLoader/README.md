@@ -15,7 +15,7 @@ Singleton class used for loading Scenes.
 ### Methods
 |||
 | - | - |
-| [LoadScene](/LoadScene.md) | Loads a Scene by the specified name or build index. |
+| [LoadScene](Documentation/SceneLoader/LoadScene.md) | Loads a Scene by the specified name or build index. |
 
 ### Events
 |||
