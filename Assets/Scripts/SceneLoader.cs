@@ -16,6 +16,8 @@ public class SceneLoader : MonoBehaviour
     private AsyncOperation _loadOperation = null;
     public AsyncOperation LoadOperation { get => _loadOperation; private set => _loadOperation = value; }
 
+    public bool IsLoadingScene => _loadOperation != null || _loadProgress >= 0f;
+
     private void Awake()
     {
         if(instance != null)
@@ -76,6 +78,7 @@ public class SceneLoader : MonoBehaviour
         _loadOperation = SceneManager.LoadSceneAsync(sceneName, sceneParameters);
 
         _loadOperation.allowSceneActivation = false;
+        _loadProgress = 0f;
 
         while (!_loadOperation.isDone)
         {
