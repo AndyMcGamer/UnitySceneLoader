@@ -1,4 +1,4 @@
-SceneLoadOptions.ManualActivation
+[SceneLoadOptions](SceneLoadOptions.md).ManualActivation
 ---
 public bool **ManualActivation** { get; }
 
