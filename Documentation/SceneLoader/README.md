@@ -19,4 +19,4 @@ Singleton class used for loading Scenes.
 ### Events
 |||
 |-|-|
-| [OnLoadUpdate](OnLoadUpdate.md) | Subscribe to this event to get notified when the LoadProgress changes. |
+| [OnLoadUpdate](OnLoadUpdate.md) | Subscribe to this event to get notified when LoadProgress changes. |
