@@ -628,11 +628,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913989b2ac2f24e428b91bf687ebedd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionType: 3
+  transitionType: 1
   duration: 0.5
   ease: 1
   reset: 1
   color: {r: 0, g: 0, b: 0, a: 1}
+  ignoreTimeScale: 0
 --- !u!1 &1207386735
 GameObject:
   m_ObjectHideFlags: 0
