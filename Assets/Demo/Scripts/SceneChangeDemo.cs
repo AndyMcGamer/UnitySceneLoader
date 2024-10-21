@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnitySceneLoader.SceneLoading;
 
-public class SceneChangeDemo : MonoBehaviour
+namespace UnitySceneLoader.Demo
 {
-    public void ChangeScene(string sceneName)
+    public class SceneChangeDemo : MonoBehaviour
     {
-        SceneLoader.instance.LoadScene(sceneName);
+        public void ChangeScene(string sceneName)
+        {
+            SceneLoader.instance.LoadScene(sceneName);
+        }
     }
 }
+
+

@@ -1,17 +1,21 @@
 using PrimeTween;
 using UnityEngine;
+using UnitySceneLoader.Transitions;
 
-public class TransitionDemo : MonoBehaviour
+namespace UnitySceneLoader.Demo
 {
-    [SerializeField] private TransitionType transitionType;
-    [SerializeField, Min(0f)] private float duration = 0.5f;
-    [SerializeField] private Ease ease = Ease.Linear;
-    [SerializeField] private bool reset = true;
-    [SerializeField] private Color color = Color.black;
-    [SerializeField] private bool ignoreTimeScale;
-
-    public async void ExecuteTransition()
+    public class TransitionDemo : MonoBehaviour
     {
-        await TransitionManager.instance.Transition(transitionType, duration, ease, reset, color, ignoreTimeScale);
+        [SerializeField] private TransitionType transitionType;
+        [SerializeField, Min(0f)] private float duration = 0.5f;
+        [SerializeField] private Ease ease = Ease.Linear;
+        [SerializeField] private bool reset = true;
+        [SerializeField] private Color color = Color.black;
+        [SerializeField] private bool ignoreTimeScale;
+
+        public async void ExecuteTransition()
+        {
+            await TransitionManager.instance.Transition(transitionType, duration, ease, reset, color, ignoreTimeScale);
+        }
     }
 }
